@@ -20,9 +20,9 @@ data class User(
     @Column(length = 100, nullable = false)
     val password: String,
     @Column(length = 20, nullable = false)
-    val role: Role = Role.USER // default to USER
+    val role: UserRoleType = UserRoleType.USER // default to USER
 )
 
-enum class Role {
+enum class UserRoleType {
     USER, ADMIN
 }

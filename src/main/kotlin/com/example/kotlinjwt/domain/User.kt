@@ -1,4 +1,4 @@
-package com.example.kotlinjwt.entity
+package com.example.kotlinjwt.domain
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -18,5 +18,11 @@ data class User(
     @Column(length = 100, nullable = false)
     val username: String,
     @Column(length = 100, nullable = false)
-    val password: String
+    val password: String,
+    @Column(length = 20, nullable = false)
+    val role: Role = Role.USER // default to USER
 )
+
+enum class Role {
+    USER, ADMIN
+}

@@ -1,6 +1,6 @@
 package com.example.kotlinjwt.service
 
-import com.example.kotlinjwt.entity.User
+import com.example.kotlinjwt.domain.User
 import com.example.kotlinjwt.repository.UserRepository
 import org.springframework.stereotype.Service
 
@@ -8,15 +8,23 @@ import org.springframework.stereotype.Service
 class UserService(
     private val userRepository: UserRepository
 ) {
-    fun getAll() : List<User> {
+    fun getAll(): List<User> {
         return userRepository.findAll()
     }
 
-    fun getByEmail(email: String) : User? {
+    fun getByEmail(email: String): User? {
         return userRepository.findByEmail(email)
     }
 
-    fun getById(id: Long) : User? {
+    fun getById(id: Long): User? {
         return userRepository.findById(id).orElse(null)
+    }
+
+    fun create(user: User): User {
+        return userRepository.save(user)
+    }
+
+    fun delete(id: Long): Unit {
+        return userRepository.deleteById(id)
     }
 }

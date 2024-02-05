@@ -1,8 +1,13 @@
 package com.example.kotlinjwt.controller
 
+import com.example.kotlinjwt.controller.dto.request.UserCreateRequest
+import com.example.kotlinjwt.controller.dto.response.UserResponse
 import com.example.kotlinjwt.service.UserService
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -11,11 +16,27 @@ class UserController(
     private val userService: UserService
 ) {
     @GetMapping
-    fun findAll() = userService.getAll()
+    fun findAll(): List<UserResponse> {
+        return userService.getAll()
+    }
 
     @GetMapping("/email")
-    fun findByEmail(@RequestParam email: String) = userService.getByEmail(email)
+    fun findByEmail(@RequestParam email: String): UserResponse? {
+        return userService.getByEmail(email)
+    }
 
     @GetMapping("/{id}")
-    fun findById(@PathVariable id: Long) = userService.getById(id)
+    fun findById(@PathVariable id: Long): UserResponse? {
+        return userService.getById(id)
+    }
+
+    @PostMapping
+    fun create(@RequestBody userCreateRequest: UserCreateRequest): UserResponse {
+        return userService.create(userCreateRequest)
+    }
+
+    @DeleteMapping("/{id}")
+    fun delete(@PathVariable id: Long): Unit {
+        return userService.delete(id)
+    }
 }

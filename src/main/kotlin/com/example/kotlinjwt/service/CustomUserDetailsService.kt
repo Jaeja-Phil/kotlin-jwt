@@ -20,6 +20,6 @@ class CustomUserDetailsService(
                     .roles(it.role.name)
                     .build()
             }
-            ?: throw UsernameNotFoundException("User not found")
+            ?: throw UsernameNotFoundException("User not found") // TODO: consider creating a custom exception
     }
 }

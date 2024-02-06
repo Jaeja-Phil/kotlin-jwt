@@ -13,3 +13,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         show_sql: true
+
+# jwt token configuration
+jwt:
+  key: ${JWT_KEY}
+  access-token-expiration: 3600000 # 1 hour
+  refresh-token-expiration: 86400000 # 1 day

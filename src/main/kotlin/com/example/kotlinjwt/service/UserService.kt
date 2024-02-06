@@ -4,11 +4,13 @@ import com.example.kotlinjwt.controller.dto.request.UserCreateRequest
 import com.example.kotlinjwt.controller.dto.response.UserResponse
 import com.example.kotlinjwt.domain.User
 import com.example.kotlinjwt.repository.UserRepository
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class UserService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val encoder: PasswordEncoder
 ) {
     fun getAll(): List<UserResponse> {
         return userRepository.findAll()
@@ -36,7 +38,7 @@ class UserService(
         val newUser = userRepository.save(User(
             email = user.email,
             username = user.username,
-            password = user.password
+            password = encoder.encode(user.password)
         ))
 
         return UserResponse(requireNotNull(newUser.id), newUser.email, newUser.username, newUser.role)

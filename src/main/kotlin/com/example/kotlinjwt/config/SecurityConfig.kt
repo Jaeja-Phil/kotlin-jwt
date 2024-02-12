@@ -24,7 +24,7 @@ class SecurityConfig(
             .csrf { it.disable() }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers("/todo").permitAll() // TODO: permit requests which does not require authentication
+                    .requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers("/api/**").hasRole("USER").anyRequest().fullyAuthenticated()
                     .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().fullyAuthenticated()
             }

@@ -6,7 +6,7 @@ import com.example.kotlinjwt.service.UserService
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 class UserController(
     private val userService: UserService
 ) {

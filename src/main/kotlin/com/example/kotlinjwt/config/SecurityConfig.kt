@@ -25,8 +25,8 @@ class SecurityConfig(
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/api/auth/**").permitAll()
-                    .requestMatchers("/api/**").hasRole("USER").anyRequest().fullyAuthenticated()
-                    .requestMatchers("/admin/**").hasRole("ADMIN").anyRequest().fullyAuthenticated()
+                    .requestMatchers("/api/**").hasRole("USER")
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
             }
             // make session stateless (since we are using JWT)
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }

@@ -1,5 +1,6 @@
 package com.example.kotlinjwt.controller.dto.response
 
 data class AuthenticationResponse(
-    val token: String
+    val accessToken: String,
+    val refreshToken: String
 )

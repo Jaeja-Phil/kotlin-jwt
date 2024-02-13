@@ -1,7 +1,9 @@
 package com.example.kotlinjwt.controller
 
 import com.example.kotlinjwt.controller.dto.request.AuthenticationRequest
+import com.example.kotlinjwt.controller.dto.request.RefreshTokenRequest
 import com.example.kotlinjwt.controller.dto.response.AuthenticationResponse
+import com.example.kotlinjwt.controller.dto.response.TokenResponse
 import com.example.kotlinjwt.service.AuthenticationService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -16,5 +18,10 @@ class AuthController(
     @PostMapping("/login")
     fun authenticate(@RequestBody authenticationRequest: AuthenticationRequest): AuthenticationResponse {
         return authenticationService.authenticate(authenticationRequest)
+    }
+
+    @PostMapping("/refresh")
+    fun refreshToken(@RequestBody refreshTokenRequest: RefreshTokenRequest): TokenResponse {
+        return authenticationService.refreshToken(refreshTokenRequest.token)
     }
 }
